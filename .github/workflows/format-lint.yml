@@ -1,0 +1,26 @@
+name: Formatting and Linting
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+jobs:
+  format-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Run Linter
+        uses: pre-commit/action@v3.0.1
+        env:
+          SKIP: "no-commit-to-branch"

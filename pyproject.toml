@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools", "setuptools_scm[toml]"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# TODO: Set your project metadata here.
+name = "example"
+description = "A very nice example."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = [
+  # TODO: Put your dependencies here.
+]
+dynamic = ["version"]
+
+[project.scripts]
+# TODO: Put your scripts entry points here.
+run-example = "example.__main__:main"
+
+[tool.setuptools.packages]
+find = { where = ["src"] }
+
+[project.optional-dependencies]
+dev = [
+  # unit-tests:
+  "pytest",
+  "pytest-html",
+  "pytest-cov",
+  "coverage[toml]",
+  "pytest-profiling",
+  "cprofilev",
+  # updater:
+  "pip-tools",
+  # git, formatters and linters:
+  "pre-commit",
+  # different python version test runner:
+  "tox",
+  # documentation generation:
+  "sphinx",
+  "furo",
+  "sphinx-autodoc-typehints",
+  "sphinx-autodoc-annotation",
+  "sphinx-copybutton",
+  "sphinx-rtd-theme",
+  "nbsphinx",
+  "sphinx-gallery",
+  "docutils",
+]
+
+# TODO: Uncomment if you want to generate a version file:
+# [tool.setuptools_scm]
+# write_to = "src/<package_name>/_version.py"
+
+[tool.isort]
+profile = "google"
+skip_glob = ["venv*/*", "env*/*", ".tox"]
+
+[tool.yapf]
+based_on_style = "google"
+column_limit = 120
+split_before_logical_operator = true
+split_before_arithmetic_operator = true
+split_before_dict_set_generator = true
+
+[tool.yapfignore]
+ignore_patterns = ["venv*/*", "env*/*", ".tox/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# TODO: Change --cov=... to your package name:
+addopts = "--html=out/test-results/report.html --cov=example --cov-report=term --cov-report=html"
+
+[tool.coverage.report]
+fail_under = 100
+omit = ["__main__.py"]
+
+[tool.coverage.html]
+directory = "out/coverage"
