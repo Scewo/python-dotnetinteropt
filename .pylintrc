@@ -1,4 +1,4 @@
-# This is a modified version of a best-effort configuration to uphold the
+# This is a modified version of a best-effort configuration to uphold the
 # best-practices and style described in the Google Python style guide:
 #   https://google.github.io/styleguide/pyguide.html
 #
@@ -8,7 +8,10 @@
 [MASTER]
 
 # Files or directories to be skipped. They should be base names, not paths.
-ignore=third_party
+ignore=third_party,
+
+# Directories to ignore when looking for source files.
+ignore-paths=^src/dotnetinteropt_examples/.*$,
 
 # Files or directories matching the regex patterns are skipped. The regex
 # matches against base names, not paths.

@@ -13,6 +13,7 @@ exclude = venv*/*,
           .mypy_cache,
           .pytest_cache,
           __pycache__,
+          src/dotnetinteropt_examples/*
 
 per-file-ignores =
         # Imported but unused (to make modules public)

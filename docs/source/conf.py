@@ -10,10 +10,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-# TODO: Change these variables to match your project.
-project = "example"
-copyright = "2023, Scewo"
-author = "Scewo"
+project = "dotnetinterop"
+copyright = "2024, Scewo AG"
+author = "Scewo AG"
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -21,7 +20,6 @@ author = "Scewo"
 extensions = [
     "sphinx.ext.autodoc",
     "sphinx.ext.napoleon",
-    "nbsphinx",
     "sphinx_gallery.load_style",
     "sphinx_rtd_theme",
     "sphinx.ext.inheritance_diagram",
@@ -34,6 +32,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.todo",
     "sphinx_copybutton",
+    "sphinx_mdinclude",
 ]
 
 templates_path = ["_templates"]

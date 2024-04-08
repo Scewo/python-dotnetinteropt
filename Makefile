@@ -37,10 +37,15 @@ else
 endif
 	pre-commit install
 
+.PHONY: examples
+examples: pyproject.toml
+	python -m pip install -e .
+	python -c "from dotnetinteropt.backend import install_nugets; install_nugets()"
+
 .PHONY: pin-dev
 pin-dev: pyproject.toml
-	pip-compile --resolver=backtracking --output-file=requirements.txt pyproject.toml
-	pip-compile --resolver=backtracking --extra=dev --output-file=requirements-dev.txt pyproject.toml
+	pip-compile --output-file=requirements.txt pyproject.toml
+	pip-compile --extra=dev --output-file=requirements-dev.txt pyproject.toml
 
 .PHONY: pin
 pin: pyproject.toml
