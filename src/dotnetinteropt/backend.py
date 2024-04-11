@@ -105,6 +105,12 @@ def _download_dotnet_dependencies(dotnet_config: _DotnetConfig) -> None:
         print(res.stdout.decode("utf-8"))
         print(res.stderr.decode("utf-8"))
         res.check_returncode()
+
+        # Add .gitignore
+        with open(os.path.join(outpath, ".gitignore"), "w", encoding="utf-8") as gitignore_file:
+            gitignore_file.write("*")
+            gitignore_file.flush()
+            time.sleep(0.05)  # wait for file to be written
     finally:
         os.remove(cproj_fname)
 
