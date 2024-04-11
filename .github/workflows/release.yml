@@ -1,0 +1,32 @@
+name: Build, Inspect & Release Python Package
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  package:
+    name: Build & inspect our package.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: hynek/build-and-inspect-python-package@v2
+
+  dist_upload:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    needs: [package]
+    environment:
+      name: pypi
+      url: https://pypi.org/p/dotnetinteropt
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: Packages
+          path: dist
+      - name: Publish package to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
