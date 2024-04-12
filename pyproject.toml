@@ -33,11 +33,8 @@ dynamic = ["version"]
 
 
 [tool.setuptools.packages]
-find = { where = ["src"] }
+find = { where = ["src"], exclude = ["dotnetinteropt_examples"] }
 
-[project.scripts]
-hello_dotnet = "dotnetinteropt_examples.hello_dotnet:main"
-json_dotnet = "dotnetinteropt_examples.json_dotnet:main"
 
 [project.optional-dependencies]
 dev = [

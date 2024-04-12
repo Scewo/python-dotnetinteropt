@@ -2,6 +2,7 @@
 
 [![build status](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/format-lint.yml/badge.svg)](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/format-lint.yml)
 [![build status](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/generate-doc.yml/badge.svg)](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/generate-doc.yml)
+[![build status](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/release.yml/badge.svg)](https://github.com/Scewo/python-dotnetinteropt/actions/workflows/release.yml)
 
 This package is a tool to easily install NuGet packages and load the compiled
 .NET DLL's into python. It uses [Pythonnet](https://pythonnet.github.io/) in the
@@ -89,6 +90,15 @@ To generate the examples run:
 ```shell
 make examples
 ```
+
+Then run the examples with:
+
+```shell
+python3 src/dotnetinteropt_examples/hello_dotnet.py
+python3 src/dotnetinteropt_examples/json_dotnet.py
+```
+
+Also, check the `pyproject.toml` file for the example configuration.
 
 ## Development
 
