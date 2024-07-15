@@ -64,6 +64,9 @@ dev = [
   "mistune<2,>=0.8.1",         # nbconvert is not compatible with mistune >=2
 ]
 
+[project.scripts]
+dotnetinteropt-install = "dotnetinteropt.frontend:_main"
+
 [tool.setuptools_scm]
 write_to = "src/dotnetinteropt/_version.py"
 

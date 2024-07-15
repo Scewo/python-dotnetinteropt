@@ -7,6 +7,7 @@ import os
 import shutil
 import subprocess  # noqa: S404
 import time
+from typing import Optional
 
 import toml
 
@@ -43,12 +44,15 @@ def _check_dependencies() -> None:
                            "(https://dotnet.microsoft.com/en-us/download)")
 
 
-def _get_dotnet_config() -> _DotnetConfig:
+def _get_dotnet_config(dotnetconfig_toml_path: Optional[str]) -> _DotnetConfig:
+
+    dotnetconfig_toml_path = dotnetconfig_toml_path or "pyproject.toml"
+
     res = subprocess.run(["dotnet", "--version"], check=True, capture_output=True)  # noqa: S603 S607
     version = res.stdout.decode("utf-8").split(".")[0].strip()
     print(f"Dotnet version: {version}")
 
-    with open("pyproject.toml", "r", encoding="utf-8") as pyproject_toml_file:
+    with open(dotnetconfig_toml_path, "r", encoding="utf-8") as pyproject_toml_file:
         pyproject = toml.load(pyproject_toml_file)
 
     # Default values
@@ -115,8 +119,14 @@ def _download_dotnet_dependencies(dotnet_config: _DotnetConfig) -> None:
         os.remove(cproj_fname)
 
 
-def install_nugets() -> None:
-    """Install the dotnet dependencies specified in the pyproject.toml file."""
+def install_nugets(dotnetconfig_toml_path: Optional[str] = None) -> None:
+    """Install the dotnet dependencies specified in the pyproject.toml file.
+
+    Args:
+        dotnetconfig_toml_path (str, optional): The path to the pyproject.toml file or any other toml file
+                                                containing a [tool.dotnetinteropt] section. If none is provided, the
+                                                default is "pyproject.toml" in the current working directory.
+    """
     _check_dependencies()
-    dotnet_config = _get_dotnet_config()
+    dotnet_config = _get_dotnet_config(dotnetconfig_toml_path)
     _download_dotnet_dependencies(dotnet_config)
